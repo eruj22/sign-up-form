@@ -16,8 +16,8 @@ function App() {
           <Form />
         </div>
         <div className="wrapper-right">
-          <img src={ImageMobile} className="image-mobile" alt="image" />
-          <img src={ImageDesktop} className="image-desktop" alt="image" />
+          <img src={ImageMobile} className="image-mobile" alt="" />
+          <img src={ImageDesktop} className="image-desktop" alt="" />
         </div>
       </div>
     </section>
