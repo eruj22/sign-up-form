@@ -63,16 +63,22 @@ button {
     h1 {
       text-align: center;
       color: $clr-primary;
-      font-size: 30px;
+      font-size: 36px;
+      margin: 1rem 0 1.5rem;
     }
 
     p {
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     .form {
-      span {
+      b {
+        color: $clr-primary;
+        cursor: pointer;
+      }
+
+      small {
         color: $clr-primary;
       }
 
@@ -134,9 +140,13 @@ button {
       }
 
       &-buttons {
-        margin-top: 2rem;
+        margin-top: 1rem;
         display: flex;
         justify-content: space-between;
+      }
+
+      button:disabled {
+        opacity: 0.6;
       }
     }
 
@@ -249,13 +259,14 @@ button {
   &-container {
     background-color: white;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 2rem;
     width: 90%;
     max-width: 900px;
     position: relative;
   }
 
   &-close-btn {
+    color: black !important;
     position: absolute;
     top: 1rem;
     right: 1rem;

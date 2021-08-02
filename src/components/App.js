@@ -1,9 +1,9 @@
 import React from "react";
-import ImageMobile from "./assets/image-mobile.jpg";
-import ImageDesktop from "./assets/image-desktop.jpg";
-import "./style/style.scss";
-import Form from "./components/Form";
-import SocialAccounts from "./components/SocialAccounts";
+import ImageMobile from "../assets/image-mobile.jpg";
+import ImageDesktop from "../assets/image-desktop.jpg";
+import "../style/style.scss";
+import Form from "./Form";
+import SocialAccounts from "./SocialAccounts";
 
 function App() {
   return (
