@@ -1,24 +1,12 @@
 import React, { useState } from "react";
 import ModalPrivacy from "./ModalPrivacy";
 import ModalTerms from "./ModalTerms";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-const schema = yup.object().shape({
-  name: yup.string().required().min(4).max(50),
-  email: yup.string().required().email(),
-  password: yup.string().required(),
-});
+import useForm from "./useForm";
+import validate from "./validateInfo";
 
 const Form = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { handleChange, values, handleSubmit, handleCheckbox, errors } =
+    useForm(validate);
   const [isModalTermsOpen, setIsModalTermsOpen] = useState(false);
   const [isModalPrivacyOpen, setIsModalPrivacyOpen] = useState(false);
 
@@ -36,51 +24,58 @@ const Form = () => {
     setIsModalPrivacyOpen(false);
   };
 
-  const handleSignIn = () => {
-    console.log("Signing in!");
-  };
-
-  const handleSignUp = () => {
-    console.log("Signing up!");
-  };
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Name"
-        {...register("name", { required: true })}
+        name="name"
+        value={values.name}
+        onChange={handleChange}
       />
-      <small>{errors.name?.message}</small>
+      {errors.name && <small>{errors.name}</small>}
       <input
         type="email"
         placeholder="email"
-        {...register("email", { required: true })}
+        name="email"
+        value={values.email}
+        onChange={handleChange}
       />
-      <small>{errors.email?.message}</small>
+      {errors.email && <small>{errors.email}</small>}
       <input
         type="password"
         placeholder="password"
-        {...register("password", { required: true })}
+        name="password"
+        value={values.password}
+        onChange={handleChange}
       />
-      <small>{errors.password?.message}</small>
+      {errors.password && <small>{errors.password}</small>}
       <div className="checkbox-container">
-        <input type="checkbox" name="agree" id="agree" />
+        <input type="checkbox" name="checkbox" onChange={handleCheckbox} />
         <label htmlFor="agree">
-          I agree to the <span onClick={openModalTerms}>Terms</span> and{" "}
-          <span onClick={openModalPrivacy}>Privacy Policy</span>
+          I agree to the{" "}
+          <b type="button" onClick={openModalTerms}>
+            Terms
+          </b>{" "}
+          and{" "}
+          <b type="button" onClick={openModalPrivacy}>
+            Privacy Policy
+          </b>
         </label>
       </div>
       <br />
       <div className="form-buttons">
-        <button className="btn btn-full" type="submit" onClick={handleSignUp}>
+        <button
+          className="btn btn-full"
+          type="submit"
+          onClick={() => console.log("Signing up!")}
+        >
           Sign Up
         </button>
-        <button className="btn btn-empty" onClick={handleSignIn}>
+        <button
+          className="btn btn-empty"
+          onClick={() => console.log("Signing in!")}
+        >
           Sign In
         </button>
       </div>
